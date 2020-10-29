@@ -1,0 +1,53 @@
+﻿@model EmployeePortal.Models.ImageGallery
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="height:600px;">
+    
+    @if (Model.ImageList.Count > 0)
+    {
+        <div class="row-fluid">
+          <div class="span2">
+             <div class="item">
+               @foreach (var image in Model.ImageList)
+               {
+                 <div style=" margin:10px; float:left; height:200px; 
+                   overflow:hidden; width:200px;">
+                   <a id="ShowImage" class="fancybox-button" 
+                                              data-rel="fancybox-button" 
+                         title="Photo" href="@Url.Content("~/UploadedFiles/"+ image)" >
+                     <div class="zoom">
+                        <img src="@Url.Content("~/UploadedFiles/" + image)" 
+                                                             class="imgBox" height="200px" width="200px"/>
+                          <div class="zoom-icon"></div>
+                     </div>
+                    </a>
+                  </div>
+				  <h>@se</h>
+               }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.imageGallery').fancybox({
+            fitToView: false,
+            width: '600px',
+            height: '400px',
+            autoSize: false,
+            closeClick: false,
+            openEffect: 'none',
+            closeEffect: 'none',
+            padding: 0,
+            closeBtn: false,
+            'afterClose': function () {
+                window.location.reload();
+            },
+
+        });
+    });
+</script>

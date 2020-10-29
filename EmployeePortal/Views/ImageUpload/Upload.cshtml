@@ -1,0 +1,70 @@
+﻿@model EmployeePortal.Models.ImageViewModel
+@{
+	Layout = null;
+}
+
+<html>
+<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="~/Scripts/imageUpload.js"></script>
+	<link href="~/Content/imgeupload.css" rel="stylesheet" />
+</head>
+<body>
+	@*@using (Html.BeginForm("UploadImage", "ImageUpload", FormMethod.Post))
+		{
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true)
+
+			<div class="container browse">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Upload Image</label>
+						<div class="input-group">
+							<span class="input-group-btn">
+								<span class="btn btn-default btn-file">
+									Browse… <input type="file" name="browseImage" accept="image/*">
+								</span>
+							</span>
+							<input type="text" class="form-control" readonly>
+						</div>
+
+						<center><input type="submit" name="login" class="login login-submit" value="Upload"></center>
+
+						<img id='img-upload' />
+					</div>
+				</div>
+			</div>
+
+		}*@
+
+	@using (Html.BeginForm("UploadImage", "ImageUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-horizontal">
+			<hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			<div class="form-group">
+				@Html.LabelFor(model => model.file, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.file, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+					@Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="Upload" class="btn btn-primary" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10 text-success">
+					@ViewBag.FileStatus
+				</div>
+			</div>
+		</div>
+	}
+</body>
+</html>
