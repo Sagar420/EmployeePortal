@@ -5,6 +5,7 @@ using System.Web;
 using EmployeePortal.Models;
 using System.Web.Mvc;
 using System.Web.Security;
+using EmployeePortal.Models;
 
 namespace EmployeePortal.Controllers
 {
@@ -55,6 +56,38 @@ namespace EmployeePortal.Controllers
 
 			return RedirectToAction("Index", "Home");
 		}
+
+		[HttpPost]
+		public ActionResult Registration(RegistrationViewModel model)
+		{
+
+			if (ModelState.IsValid)
+			{
+				var user = new  userdetail
+				{
+					Name = model.Name,
+					Email = model.Email,
+					Password = AESAlgorithm.EncryptText(model.Password, "Sagar123"),
+					Mobile = model.Mobile
+
+				};
+
+				db.userdetails.Add(user);
+				db.SaveChanges();
+
+			}
+			else
+			{
+				return View("Registration");
+			}
+			return RedirectToAction("Index", "Account");
+		}
+
+		public ActionResult Registration()
+		{
+			return View();
+		}
+
 		public ActionResult Logout()
 		{
 			FormsAuthentication.SignOut();

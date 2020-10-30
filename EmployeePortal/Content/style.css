@@ -110,3 +110,9 @@ body {
 	cursor: default;
 	opacity: 0.6;
 }
+
+input,
+select,
+textarea {
+	max-width: 280px;
+}

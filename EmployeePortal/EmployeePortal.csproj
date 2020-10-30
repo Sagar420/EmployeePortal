@@ -156,6 +156,7 @@
     <Compile Include="Models\ImageGallery.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\userdetail.cs">
       <DependentUpon>EmployeePortal.tt</DependentUpon>
     </Compile>
@@ -222,6 +223,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\ImageUpload\Upload.cshtml" />
+    <Content Include="Views\Account\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
